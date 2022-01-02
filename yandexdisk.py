@@ -16,9 +16,9 @@ class YaUploader:
         response = requests.get(upload_url, headers=headers, params=params)
         return response.json()
 
-    def upload(self, file_path: str, file: str):
+    def upload(self, file_path: str, data):
         href_dict = self._get_upload_link(file_path=file_path)
         href = href_dict.get("href")
-        response = requests.put(href, data=open(file, "rb"))
+        response = requests.put(href, data)
         response.raise_for_status()
 

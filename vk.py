@@ -20,8 +20,9 @@ class VkUser:
     def user_name(self, user_link):
         url = self.url +'users.get'
         params = {'users_id' : self.get_user_id(user_link)}
-        response = requests.get(url=url, params={**params, **self.params})
-        return response['response']['first_name'] + response['response']['last_name']
+        response = requests.get(url=url, params={**params, **self.params}).json()
+        name = response['response'][0]['first_name'] + " " + response['response'][0]['last_name']
+        return name
 
 
     def get_photos(self, user_link):
@@ -32,3 +33,4 @@ class VkUser:
             'photo_sizes' : '1'}
         response = requests.get(url=url, params={**params, **self.params}).json()
         return response
+
