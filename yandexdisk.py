@@ -21,4 +21,26 @@ class YaUploader:
         href = href_dict.get("href")
         response = requests.put(href, data)
         response.raise_for_status()
+    
+    def upload_from_url(self, file_path, url):
+        upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
+        headers = self.get_headers()
+        params = {
+            'url' : url,
+            'path' : file_path
+            }
+        response = requests.post(url=upload_url, headers=headers, params=params)
+        print(response.status_code)
+        if response.status_code == 200:
+            print('Image uploaded')
+    
+    def create_folder(self, folder_path):
+        url = "https://cloud-api.yandex.net/v1/disk/resources"
+        params = {'path' : folder_path}
+        response = requests.put(url=url, headers=self.get_headers(), params=params)
+        if response.status_code == 201:
+            print(f"Folder {folder_path} created")        
+        
+
+
 
