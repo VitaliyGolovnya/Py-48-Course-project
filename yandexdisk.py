@@ -1,5 +1,4 @@
 import requests
-import urllib
 class YaUploader:
     def __init__(self, token: str):
         self.token = token
@@ -30,9 +29,8 @@ class YaUploader:
             'path' : file_path
             }
         response = requests.post(url=upload_url, headers=headers, params=params)
-        print(response.status_code)
-        if response.status_code == 202:
-            print('Image uploaded')
+        # if response.status_code == 202:
+        #     print('Image uploaded')
     
     def create_folder(self, folder_path):
         url = "https://cloud-api.yandex.net/v1/disk/resources"
