@@ -29,8 +29,6 @@ class YaUploader:
             'path' : file_path
             }
         response = requests.post(url=upload_url, headers=headers, params=params)
-        # if response.status_code == 202:
-        #     print('Image uploaded')
     
     def create_folder(self, folder_path):
         url = "https://cloud-api.yandex.net/v1/disk/resources"
