@@ -1,5 +1,5 @@
 import requests
-
+import urllib
 class YaUploader:
     def __init__(self, token: str):
         self.token = token
@@ -31,7 +31,7 @@ class YaUploader:
             }
         response = requests.post(url=upload_url, headers=headers, params=params)
         print(response.status_code)
-        if response.status_code == 200:
+        if response.status_code == 202:
             print('Image uploaded')
     
     def create_folder(self, folder_path):
